@@ -14,6 +14,13 @@
 ## Native and editable
 
 - Use stock Elementor/Pro widgets whenever they can express the requirement.
+- On an existing Elementor site, make every layout change through the native
+  Elementor editor/model, one section or Theme Builder document per save.
+- Never use a custom builder or mutation script, WP-CLI seeder, bulk import,
+  bulk database edit, direct `_elementor_data` write, or global search-and-
+  replace to align an existing design.
+- Never substitute a large page-specific CSS parity layer for native container,
+  widget, Site Settings, or responsive controls.
 - Use Loop Item plus Loop Grid/Carousel for repeated cards.
 - Use Elementor Pro Form actions and Submissions instead of a custom endpoint,
   lead post type, or frontend handler.
@@ -38,10 +45,13 @@
 - Preserve unrelated working-tree and production changes.
 - Resolve exact document IDs, post IDs, option keys, and remote paths before
   mutation.
-- Back up the complete target and record hashes before direct Elementor meta,
-  options, templates, or production files are replaced.
-- Prefer patching a stable child-theme stylesheet over rebuilding a template
-  that contains manual editor changes.
+- Back up the complete target document and record hashes before editor changes.
+- Edit, add, duplicate, move, and delete through Elementor's editor or Navigator
+  so Elementor generates IDs and persists parent/order relationships.
+- Save after one bounded section/template change, reopen the editor, and verify
+  both the rendered frontend and the resulting JSON structure before continuing.
+- Keep the last known-good document export available until all required
+  breakpoints pass.
 - Flush Elementor/CSS caches only after the bounded write succeeds.
 - Never claim a backup exists unless its path, size, and restore command are
   verified.
@@ -50,8 +60,13 @@
 
 - Do not generate or run unit tests unless the user explicitly requests them.
 - Run syntax checks only on modified files by default.
-- Exercise the actual route and affected interaction in a browser.
+- Use Playwright to exercise the actual route and the Elementor editor.
+- Browser JavaScript must remain read-only measurement code. Do not inject or
+  persist DOM, CSS, or JavaScript as an implementation shortcut.
 - Wait for `document.fonts.ready` before visual measurements.
+- Compare header, footer, and each section independently at desktop, tablet, and
+  mobile, including inner containers, widgets, text metrics, padding, gaps,
+  media crops, and interaction states.
 - Treat database rows, successful HTTP codes, and screenshots as different
   evidence; one does not replace the others.
 - Do not call a page pixel-perfect without a reference render, matching

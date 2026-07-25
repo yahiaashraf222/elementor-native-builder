@@ -8,9 +8,10 @@ The bundled `elementor-native-builder` skill enforces:
 
 - native Elementor/Pro widgets before custom HTML or shortcodes;
 - Loop Item and Loop Grid architecture for repeated content;
-- safe, version-aware programmatic Elementor document generation;
+- section-by-section editing through Elementor's native editor and responsive
+  controls, without builder scripts, bulk edits, or direct data replacement;
 - protected CPT/meta and multilingual RTL/LTR handling;
-- page-by-page responsive visual comparison;
+- Playwright-based header, footer, and section-by-section responsive comparison;
 - backups, rollback boundaries, structural audits, and evidence-based handoff.
 
 ## Install in Codex

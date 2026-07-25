@@ -16,11 +16,15 @@
 
 ## Gate 2: structure
 
-- Export or capture generated Elementor JSON.
+- Export or capture the editor-saved Elementor JSON.
 - Run `scripts/audit_elementor_json.py`.
 - Require unique IDs and zero unapproved HTML or Shortcode widgets.
 - Confirm native widget types, Loop Item IDs, queries, document conditions, and
   language relationships.
+- Confirm every added/duplicated element has an Elementor-generated unique ID
+  and every moved element has the intended parent and sibling order.
+- Confirm responsive control keys/variants match the installed Elementor
+  version and the values set in the editor.
 - Reopen representative documents in Elementor editor.
 
 ## Gate 3: syntax and server render
@@ -49,9 +53,16 @@ At the approved widths:
 1. render the reference over HTTP, not `file://`, if browser restrictions apply;
 2. load the implementation with cache-busting when a CDN is present;
 3. wait for `document.fonts.ready`;
-4. capture matching full-page and element screenshots;
+4. capture matching full-page screenshots and one focused screenshot for the
+   header, footer, and every section;
 5. compare section order, bounds, type, colors, spacing, crops, and states;
-6. inspect `getBoundingClientRect()` and `getComputedStyle()` for disagreements.
+6. inspect `getBoundingClientRect()` and `getComputedStyle()` on the section,
+   inner containers, headings, text, buttons, media, and interactive widgets;
+7. fix one Elementor section/template, save it, then rerun all three viewport
+   checks before continuing to the next section.
+
+A matching section height or outer rectangle does not pass when internal
+typography, padding, gaps, alignment, or media treatment differs.
 
 At minimum cover desktop, tablet, and mobile. Typical diagnostic widths are
 1440/1280, 1024, 820/768, 600, and 390/375, but the reference contract governs.

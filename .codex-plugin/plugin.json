@@ -1,6 +1,6 @@
 {
   "name": "elementor-native-builder",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Build, refactor, and verify responsive WordPress sites with editable native Elementor and Elementor Pro widgets.",
   "author": {
     "name": "yahia_ashraf",
@@ -23,7 +23,7 @@
   "interface": {
     "displayName": "Native Elementor Builder",
     "shortDescription": "Build editable, pixel-accurate Elementor sites",
-    "longDescription": "Reproduce reference designs with native Elementor and Elementor Pro widgets, dynamic content, Theme Builder templates, safe programmatic generation, bilingual parity, and evidence-based responsive verification.",
+    "longDescription": "Reproduce reference designs section by section with native Elementor and Elementor Pro widgets, Theme Builder templates, responsive editor controls, bilingual parity, and Playwright-based verification without bulk data edits.",
     "developerName": "yahia_ashraf",
     "category": "Developer Tools",
     "capabilities": [

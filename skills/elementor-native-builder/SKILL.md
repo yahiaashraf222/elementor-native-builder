@@ -1,6 +1,6 @@
 ---
 name: elementor-native-builder
-description: Build, refactor, diagnose, or verify WordPress sites implemented with Elementor or Elementor Pro from reference designs. Use for native-widget conversions, Theme Builder templates, Loop Grid and Loop Item systems, dynamic CPT content, bilingual RTL/LTR sites, programmatic Elementor JSON generation, responsive pixel-parity work, or audits of HTML and Shortcode widget usage.
+description: Build, refactor, diagnose, or verify WordPress sites implemented with Elementor or Elementor Pro from reference designs. Use for native-widget conversions, Theme Builder templates, Loop Grid and Loop Item systems, dynamic CPT content, bilingual RTL/LTR sites, section-by-section responsive pixel-parity work, or audits of HTML and Shortcode widget usage.
 ---
 
 # Native Elementor Builder
@@ -22,7 +22,7 @@ structure is not editable, dynamic, responsive, or safe to rebuild.
    before generating Elementor data, registering widgets/tags, or creating Theme
    Builder and Loop templates.
 5. Implement in small, reversible slices. Preserve user edits and unrelated
-   work. Back up the exact target before replacing generated documents.
+   work. Back up the exact document before editing one section or template.
 6. Read [verification.md](references/verification.md), run every applicable
    gate, and report evidence page by page.
 7. Consult [failure-modes.md](references/failure-modes.md) when visual geometry,
@@ -47,18 +47,26 @@ with custom markup merely because coding is faster.
 ## Implementation contract
 
 - Keep layout in Elementor containers and content in Elementor widgets.
-- Put reusable visual rules in the active child theme, using stable classes on
-  containers and widgets. Keep text, links, media, form fields, and queries
-  editable in Elementor.
+- For existing Elementor sites, edit through the native Elementor editor/model
+  one bounded section or Theme Builder document at a time. Do not use custom
+  builder/mutation scripts, bulk imports, bulk database edits, generated JSON
+  replacement, or mass search-and-replace.
+- Use Elementor Site Settings and native responsive controls for typography,
+  spacing, dimensions, alignment, and breakpoints. Use child-theme CSS only for
+  a proven capability gap, never as a large layout-parity layer.
 - Use dynamic content for repeated entities. Prefer CPTs, protected meta,
   taxonomies, Loop Items, and language-aware queries over duplicated cards.
 - Inspect the installed Elementor/Pro source or export a known-good sample
   before using version-specific widget types, control keys, actions, document
   types, conditions, or JSON shapes.
-- Treat `_elementor_data` as an internal, version-sensitive contract. Back it
-  up, hash it, and verify a staging render before any bounded direct write.
-- Do not recreate generated templates over manual editor changes without
-  showing the user the exact overwrite boundary.
+- Treat `_elementor_data` as a read-only verification artifact for existing-site
+  alignment. Back it up and inspect it to verify the editor result; do not write
+  it directly.
+- Add, duplicate, move, and delete containers through Elementor's editor or
+  Navigator so Elementor owns IDs, parentage, ordering, responsive settings,
+  history, and save behavior.
+- Use Playwright for read-only geometry/style inspection and native editor
+  interaction. Never inject final DOM, CSS, or JavaScript through the browser.
 - Do not create or run unit tests unless the user explicitly requests them.
   By default run syntax checks, structural audits, and real runtime/browser
   verification only.
@@ -79,8 +87,8 @@ Do not call work complete until all applicable gates pass:
   forms and dynamic templates work, and browser console/network failures are
   reviewed.
 - **Visual:** compare reference and implementation after fonts load at every
-  required breakpoint in both LTR and RTL. Measure concrete DOM geometry when
-  screenshots disagree.
+  required breakpoint in both LTR and RTL. Capture and measure the header,
+  footer, and every page section independently before full-page acceptance.
 - **Responsive:** verify no horizontal overflow, correct grid collapse, menu
   behavior, forms, carousels, and footer layout at desktop, tablet, and mobile.
 - **Handoff:** give exact pages, widths, commands, screenshots, counts, and any

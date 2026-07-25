@@ -3,7 +3,7 @@
 ## Use version evidence
 
 Elementor stores page structure as JSON-backed post metadata, but widget and
-control schemas change. Before emitting data:
+control schemas change. Before editing:
 
 1. read the installed widget registration and control definitions;
 2. export a small known-good template from the same installation when useful;
@@ -13,6 +13,7 @@ control schemas change. Before emitting data:
 Official starting points:
 
 - https://developers.elementor.com/docs/data-structure/
+- https://developers.elementor.com/docs/data-structure/responsive-data/
 - https://developers.elementor.com/docs/widgets/
 - https://developers.elementor.com/docs/dynamic-tags/
 - https://developers.elementor.com/docs/themes/
@@ -27,9 +28,22 @@ Official starting points:
   expected; do not choose Canvas accidentally.
 - Verify the location server-side and through the public route.
 
-Direct `_elementor_data` writes are a last-resort, version-sensitive technique.
-Back up and hash the old value, bound the write to confirmed IDs, preserve
-escaping, clear generated files, and prove editor plus frontend parity.
+Do not write `_elementor_data` directly for existing-site design alignment.
+Use it only as a backed-up, read-only verification artifact after Elementor
+saves the document.
+
+## Responsive editor data
+
+- Verify the installed control names and value shapes before editing.
+- In classic Elementor data, a responsive control stores desktop in the base
+  key and device overrides beside it, such as `control_name_tablet` and
+  `control_name_mobile`.
+- Additional breakpoints use their configured device suffixes. Atomic Widgets
+  may use style variants instead, so inspect the installed feature state and a
+  known-good editor save before relying on either shape.
+- Set responsive values through Elementor's responsive editor controls. After
+  saving, inspect the exact element settings and confirm inheritance at every
+  required breakpoint.
 
 ## Native widgets and classes
 
@@ -63,6 +77,10 @@ escaping, clear generated files, and prove editor plus frontend parity.
 
 ## CSS and responsive behavior
 
+- Prefer native container/widget controls and Site Settings over child-theme
+  layout CSS.
+- Do not create a large CSS layer that absolutely positions or force-sizes page
+  sections to imitate a screenshot.
 - Elementor containers are flex by default. Explicitly set row/grid direction
   and gaps when the reference requires them.
 - A base rule using `!important` needs an equal-or-stronger responsive override.

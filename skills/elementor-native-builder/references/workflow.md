@@ -29,9 +29,10 @@ for the installed version. Do not silently upgrade dependencies.
 
 ## 3. Choose an architecture
 
-For a small existing page, editor changes may be safest. For a multilingual,
-multi-page reference build, use repeatable builder scripts that emit supported
-Elementor documents and preserve a clear rebuild boundary.
+For an existing Elementor site, use the native editor/model for every change.
+Do not use builder scripts, bulk imports, direct meta writes, or generated JSON
+replacement. For a new multilingual site, establish reusable native templates,
+Loop Items, and Site Settings manually through the editor before scaling.
 
 Map:
 
@@ -54,17 +55,40 @@ Prove one complete slice before scaling:
 5. one form;
 6. responsive and translated variants.
 
-At each slice, verify structure, frontend render, editor visibility, and
-rollback before multiplying the pattern.
+At each slice:
+
+1. capture the matching reference and live component in Playwright;
+2. wait for `document.fonts.ready` and measure the outer section plus its
+   relevant inner containers and widgets;
+3. open the exact Elementor page/template and select it in Navigator;
+4. change native controls for one section or template only;
+5. save, reload the editor, and inspect the saved responsive data;
+6. reload the frontend and verify desktop, tablet, and mobile before continuing.
+
+Do not accept a matching outer rectangle when inner typography, gaps, padding,
+alignment, media crops, or controls still differ.
 
 ## 5. Preserve rebuildability
 
-- Tag or otherwise identify generated templates.
-- Record source script, output document IDs, language links, and conditions.
-- Keep content dictionaries separate from layout helpers.
-- Keep stable visual CSS in the child theme.
-- Refuse a destructive rebuild when manual edits exist unless the user approves
-  the replacement and a restorable snapshot exists.
+- Name templates and Navigator containers clearly.
+- Record document IDs, template types, language links, and conditions.
+- Keep reusable content in WordPress and reusable layout in native templates.
+- Use Site Settings for shared visual tokens.
+- Refuse a bulk rebuild when manual edits exist. Restore or edit the affected
+  document section-by-section instead.
+
+## Native section operations
+
+- **Edit:** select the exact container/widget in Navigator, change its native
+  content/style/advanced controls, set each required responsive value, and save.
+- **Add:** insert a native container/widget in the intended parent, configure
+  layout and responsive controls, name it, then save and verify its new ID.
+- **Duplicate:** use Elementor Duplicate in Navigator. Confirm Elementor created
+  unique IDs, then update content, controls, and accessible names before saving.
+- **Move:** drag the selected element in Navigator to the intended parent/order.
+  Save, reopen, and confirm both Navigator placement and JSON parent/order.
+- **Delete:** export/back up the document, delete only the selected element in
+  Navigator, save, and verify no shared template or responsive sibling changed.
 
 ## 6. Verify and hand off
 

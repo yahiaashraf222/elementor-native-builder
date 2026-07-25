@@ -2,7 +2,7 @@
   "$schema": "https://json.schemastore.org/claude-code-plugin-manifest.json",
   "name": "elementor-native-builder",
   "displayName": "Native Elementor Builder",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Build, refactor, and verify responsive WordPress sites with editable native Elementor and Elementor Pro widgets.",
   "author": {
     "name": "yahia_ashraf",

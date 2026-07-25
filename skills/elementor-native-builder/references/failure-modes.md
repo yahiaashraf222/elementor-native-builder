@@ -12,9 +12,17 @@
 
 ## Rebuild erased user work
 
-Generated template builders may delete and recreate documents. Before running
-one, detect manual editor changes and back up the whole document. Prefer a
-stable CSS correction when it can preserve the template.
+Builder scripts, bulk imports, and direct meta replacement can delete or
+recreate documents and erase editor history. Do not use them for existing-site
+alignment. Back up the document, then edit only the intended element through
+Elementor and verify the saved result before continuing.
+
+## Outer bounds match but design still differs
+
+A forced height or broad CSS override can make section geometry appear correct
+while fonts, baselines, padding, gaps, media crops, or responsive behavior still
+differ. Compare the inner containers and widgets, remove the parity override,
+and express the correction through the exact Elementor controls.
 
 ## Correct file, stale frontend
 

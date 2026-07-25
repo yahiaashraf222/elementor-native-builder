@@ -1,0 +1,37 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-marketplace.json",
+  "name": "elementor-native-builder",
+  "owner": {
+    "name": "yahia_ashraf",
+    "url": "https://github.com/yahiaashraf222"
+  },
+  "metadata": {
+    "description": "Native Elementor implementation and visual verification workflow.",
+    "version": "0.1.0"
+  },
+  "plugins": [
+    {
+      "name": "elementor-native-builder",
+      "source": "./",
+      "displayName": "Native Elementor Builder",
+      "description": "Build and verify client-editable Elementor sites from reference designs.",
+      "version": "0.1.0",
+      "author": {
+        "name": "yahia_ashraf",
+        "url": "https://github.com/yahiaashraf222"
+      },
+      "homepage": "https://github.com/yahiaashraf222/elementor-native-builder",
+      "repository": "https://github.com/yahiaashraf222/elementor-native-builder",
+      "license": "MIT",
+      "keywords": [
+        "wordpress",
+        "elementor",
+        "elementor-pro",
+        "responsive",
+        "visual-qa"
+      ],
+      "category": "developer-tools",
+      "strict": true
+    }
+  ]
+}

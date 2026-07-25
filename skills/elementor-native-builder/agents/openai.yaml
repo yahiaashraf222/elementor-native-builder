@@ -1,0 +1,4 @@
+interface:
+  display_name: "Native Elementor Builder"
+  short_description: "Build editable, pixel-accurate Elementor sites"
+  default_prompt: "Use $elementor-native-builder to reproduce this reference as a native, responsive Elementor site and verify it page by page."

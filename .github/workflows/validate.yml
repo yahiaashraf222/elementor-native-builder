@@ -1,0 +1,27 @@
+name: Validate plugin
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Validate cross-platform metadata
+        run: python scripts/validate_repository.py
+      - name: Compile Python helpers
+        run: |
+          python -m py_compile scripts/validate_repository.py
+          python -m py_compile skills/elementor-native-builder/scripts/audit_elementor_json.py
+      - name: Smoke-check audit helper
+        run: |
+          printf '%s' '[{"id":"a1","elType":"widget","widgetType":"heading","settings":{"_css_classes":"title"},"elements":[]}]' |
+            python skills/elementor-native-builder/scripts/audit_elementor_json.py -

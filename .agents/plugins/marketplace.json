@@ -1,0 +1,20 @@
+{
+  "name": "elementor-native-builder",
+  "interface": {
+    "displayName": "Native Elementor Builder"
+  },
+  "plugins": [
+    {
+      "name": "elementor-native-builder",
+      "source": {
+        "source": "local",
+        "path": "."
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "Developer Tools"
+    }
+  ]
+}

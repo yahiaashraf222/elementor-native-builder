@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-plugin-manifest.json",
+  "name": "elementor-native-builder",
+  "displayName": "Native Elementor Builder",
+  "version": "0.1.0",
+  "description": "Build, refactor, and verify responsive WordPress sites with editable native Elementor and Elementor Pro widgets.",
+  "author": {
+    "name": "yahia_ashraf",
+    "url": "https://github.com/yahiaashraf222"
+  },
+  "homepage": "https://github.com/yahiaashraf222/elementor-native-builder",
+  "repository": "https://github.com/yahiaashraf222/elementor-native-builder",
+  "license": "MIT",
+  "keywords": [
+    "wordpress",
+    "elementor",
+    "elementor-pro",
+    "theme-builder",
+    "loop-grid",
+    "responsive",
+    "rtl",
+    "visual-qa"
+  ],
+  "skills": "./skills/"
+}
